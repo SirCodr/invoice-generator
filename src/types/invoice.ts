@@ -15,6 +15,7 @@ type PersonInfo = {
   }
 
 export type Item = {
+  id: string
   description: string
   price: number
   quantity: number
