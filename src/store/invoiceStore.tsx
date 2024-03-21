@@ -27,7 +27,12 @@ const INITIAL_INVOICE_DATA: Invoice = {
   id: '',
   date: '',
   details: '',
-  items: [],
+  items: [{
+    description: '',
+    price: 0,
+    quantity: 1,
+    total: 0
+  }],
   total: 0
 }
 
