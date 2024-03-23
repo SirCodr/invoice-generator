@@ -104,10 +104,10 @@ const InvoiceForm = () => {
                     className='border border-black'
                     value={item.price.toString()}
                     onChange={(e) =>
-                      updateItemPropById(item.id, 'price', e.target.value)
+                      updateItemPropById(item.id, 'price', Number(e.target.value))
                     }
                   />
-                  <span>$0.0</span>
+                  <span>${item.total}</span>
                 </InputGroup>
               )
             })}
