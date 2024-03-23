@@ -1,16 +1,20 @@
-import { PDFDownloadLink } from "@react-pdf/renderer"
-import Pdf from "../../Pdf"
-import { useInvoiceStore } from "../../store/invoiceStore"
+import { Button } from 'primereact/button'
+import { useInvoiceStore } from '../../store/invoiceStore'
 
 const Layout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
-  const invoice = useInvoiceStore(state => state.invoice)
+  const [preview, togglePreview] = useInvoiceStore((state) => [
+    state.preview,
+    state.togglePreview
+  ])
 
   return (
     <main className='flex flex-col gap-y-4'>
       <header>
-        <PDFDownloadLink document={<Pdf invoice={invoice} />} fileName='pdf.pdf'>
-          Descargar
-        </PDFDownloadLink>
+        <Button
+          type='button'
+          label={preview ? 'Ocultar' : 'Mostrar'}
+          onClick={togglePreview}
+        />
       </header>
       {children}
     </main>

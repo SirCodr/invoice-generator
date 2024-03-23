@@ -13,6 +13,8 @@ interface invoiceState {
   setTotal: (total: number) => void
   addItem: () => void
   updateItemPropById: (id: string, key: keyof Item, value: unknown) => void
+  preview: boolean
+  togglePreview: () => void
 }
 
 const INITIAL_ITEM_DATA: Item = {
@@ -93,6 +95,8 @@ export const useInvoiceStore = create<invoiceState>()(
       })
 
       return { invoice: { ...state.invoice, items: itemsDraft } }
-    })
+    }),
+    preview: false,
+    togglePreview: () => set(state => ({ preview: !state.preview }))
   }))
 )

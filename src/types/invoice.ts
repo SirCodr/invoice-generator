@@ -10,8 +10,8 @@ export interface Invoice {
 
 type PersonInfo = {
     name: string
-    address: string
-    phone: string
+    address?: string
+    phone?: string
   }
 
 export type Item = {

@@ -5,15 +5,17 @@ import InvoiceForm from './components/invoice/form'
 import { useInvoiceStore } from './store/invoiceStore'
 
 const App = () => {
-  const invoice = useInvoiceStore(state => state.invoice)
+  const [invoice, preview] = useInvoiceStore(state => [state.invoice, state.preview])
 
   return (
     <Layout>
       <div className='flex flex-col gap-x-6 gap-y-4'>
         <InvoiceForm />
-        <PDFViewer >
-          <Pdf invoice={invoice} />
-        </PDFViewer>
+        {preview && (
+          <PDFViewer >
+            <Pdf invoice={invoice} />
+          </PDFViewer>
+        )}
       </div>
     </Layout>
   )
