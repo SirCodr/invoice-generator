@@ -1,4 +1,5 @@
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Invoice } from './types/invoice';
 // Create styles
 const styles = StyleSheet.create({
   page: {
@@ -12,11 +13,7 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const Pdf = ({ invoice }) => {
-  
-  console.log(invoice.name);
-  
-
+const Pdf = ({ invoice }: { invoice: Invoice }) => {
   return (
     (
   <Document>
@@ -24,7 +21,7 @@ const Pdf = ({ invoice }) => {
       <View style={styles.section}>
         <Text>Section #1</Text>
         <View>
-          <Text>{invoice.name}</Text>
+          <Text>{invoice.emitter.name}</Text>
         </View>
       </View>
       <View style={styles.section}>

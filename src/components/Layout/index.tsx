@@ -6,7 +6,7 @@ const Layout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   const invoice = useInvoiceStore(state => state.invoice)
 
   return (
-    <main className='flex flex-col'>
+    <main className='flex flex-col gap-y-4'>
       <header>
         <PDFDownloadLink document={<Pdf invoice={invoice} />} fileName='pdf.pdf'>
           Descargar
