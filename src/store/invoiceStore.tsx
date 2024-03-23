@@ -81,9 +81,15 @@ export const useInvoiceStore = create<invoiceState>()(
       if (!id || key === 'id') return { invoice:{ ...state.invoice } }
 
       const itemsDraft = state.invoice.items.map(item => {
-        if (item.id === id) return { ...item, [key]: value }
+        if (item.id !== id) return item
 
-        return item
+        const itemDraft = {...item, [key]: value}
+
+        if (key === 'price' || key === 'quantity') {
+          itemDraft.total = (itemDraft.price * itemDraft.quantity)
+        }
+
+        return itemDraft
       })
 
       return { invoice: { ...state.invoice, items: itemsDraft } }
