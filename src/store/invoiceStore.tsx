@@ -80,6 +80,7 @@ export const useInvoiceStore = create<invoiceState>()(
       })),
     updateItemPropById: (id, key, value) => set(state => {
       if (!id || key === 'id') return { invoice:{ ...state.invoice } }
+      let invoiceTotal = state.invoice.total
 
       const itemsDraft = state.invoice.items.map(item => {
         if (item.id !== id) return item
@@ -93,7 +94,11 @@ export const useInvoiceStore = create<invoiceState>()(
         return itemDraft
       })
 
-      return { invoice: { ...state.invoice, items: itemsDraft } }
+      if (key === 'price' || key === 'quantity') {
+        invoiceTotal = itemsDraft.reduce((accumulator, currentValue) => accumulator + (currentValue.price * currentValue.quantity), 0)
+      }
+
+      return { invoice: { ...state.invoice, total: invoiceTotal, items: itemsDraft } }
     })
   }))
 )
