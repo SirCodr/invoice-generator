@@ -5,6 +5,7 @@ import { Calendar } from 'primereact/calendar'
 import { InputTextarea } from 'primereact/inputtextarea'
 import { InputNumber } from 'primereact/inputnumber'
 import { Button } from 'primereact/button'
+import { DateTime } from 'luxon'
 
 const InvoiceForm = () => {
   const [
@@ -66,8 +67,8 @@ const InvoiceForm = () => {
               <label htmlFor=''>Fecha</label>
               <Calendar
                 className='border border-black'
-                value={invoice.date}
-                onChange={(e) => setDate(e.value.getTime())}
+                value={DateTime.fromISO(invoice.date).toJSDate()}
+                onChange={(e) => setDate(e.target.value?.toISOString() ?? '')}
               />
             </InputGroup>
           </aside>

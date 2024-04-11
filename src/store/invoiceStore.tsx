@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { Invoice, Item } from '../types/invoice'
+import { DateTime } from 'luxon'
 
 interface invoiceState {
   invoice: Invoice
@@ -35,7 +36,7 @@ const INITIAL_INVOICE_DATA: Invoice = {
     phone: ''
   },
   id: '',
-  date: '',
+  date: DateTime.now().toISODate(),
   details: '',
   items: [INITIAL_ITEM_DATA],
   total: 0
