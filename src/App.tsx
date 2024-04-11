@@ -9,9 +9,9 @@ const App = () => {
 
   return (
     <Layout>
-      <div className='flex flex-col gap-x-6 gap-y-4'>
+      <div className='flex flex-col gap-x-6 gap-y-4 h-full'>
         <InvoiceForm />
-        <PDFViewer >
+        <PDFViewer height='100%' >
           <Pdf invoice={invoice} />
         </PDFViewer>
       </div>
