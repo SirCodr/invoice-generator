@@ -1,29 +1,20 @@
-import { useInvoiceStore } from '../../../store/invoiceStore'
 import { InputText } from 'primereact/inputtext'
 import InputGroup from '../../common/input-group'
 import { Calendar } from 'primereact/calendar'
 import { InputTextarea } from 'primereact/inputtextarea'
 import { InputNumber } from 'primereact/inputnumber'
 import { Button } from 'primereact/button'
+import { DateTime } from 'luxon'
+import useInvoice from '../../hooks/useInvoice'
 
 const InvoiceForm = () => {
-  const [
-    invoice,
+  const { invoice,
     setEmitterName,
     setRecipientName,
     setId,
     setDate,
     addItem,
-    updateItemPropById
-  ] = useInvoiceStore((state) => [
-    state.invoice,
-    state.setEmitterName,
-    state.setRecipientName,
-    state.setId,
-    state.setDate,
-    state.addItem,
-    state.updateItemPropById
-  ])
+    updateItemPropById } = useInvoice()
 
   return (
     <article className='w-full px-14 bg-[#ECF0F2]'>
@@ -66,8 +57,8 @@ const InvoiceForm = () => {
               <label htmlFor=''>Fecha</label>
               <Calendar
                 className='border border-black'
-                value={invoice.date}
-                onChange={(e) => setDate(e.value.getTime())}
+                value={DateTime.fromISO(invoice.date).toJSDate()}
+                onChange={(e) => setDate(e.target.value?.toISOString() ?? '')}
               />
             </InputGroup>
           </aside>

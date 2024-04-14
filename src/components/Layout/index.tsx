@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   ])
 
   return (
-    <main className='flex flex-col gap-y-4'>
+    <main className='flex flex-col gap-y-4 h-screen'>
       <header>
         <Button
           type='button'
